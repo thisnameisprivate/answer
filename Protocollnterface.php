@@ -174,7 +174,7 @@ $file_data = file_get_contents($file_to_transfer);
 $PACKAGE_HEAD_LEN = 5;
 $package = pack('NC', $PACKAGE_HEAD_LEN + strlen($file_name) + strlen($file_data), $name_len) . $file_name . $file_data;
 fwrite($client, $package);
-echo fread($client, 8192), "\n"
+echo fread($client, 8192), "\n";
 // øÕªß≤‚ ‘”√¿˝
 class TexteTransfer {
     public static function input ($recv_buffer) {
