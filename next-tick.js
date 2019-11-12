@@ -206,3 +206,10 @@ function apiConnect (apiKey) {
 const api = apiConnect('my-secret-key');
 api.get('http://www.example.com/get-endpoint');
 api.get('http://www.example.com/post-endpoint', { name: 'Joe' });
+// Object
+function Student (name) {
+    this.name = name;
+}
+Student.prototype.hello = function () {
+    alert('Hello, ' + this.name + ' !');
+}
