@@ -213,3 +213,11 @@ function Student (name) {
 Student.prototype.hello = function () {
     alert('Hello, ' + this.name + ' !');
 }
+var self = document.getElementById('to-be-removed');
+var parent = self.parentElement;
+var removed = parent.removeChild(self);
+removed === self;
+var parent = document.getElementById('parent');
+var parent = document.getElementById('parent');
+parent.removeChild(parent.children[0]);
+parent.removeChild(parent.children[1]);
