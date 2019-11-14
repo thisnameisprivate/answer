@@ -15,3 +15,13 @@ place varchar(100) not null,
 work varchar(100) not null,
 pay varchar(100) not null
 )charset=utf8;
+
+
+
+
+
+
+
+
+
+
