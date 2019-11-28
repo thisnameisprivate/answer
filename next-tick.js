@@ -451,12 +451,18 @@ Lennon["living"] = false;
 console.log(Lennon);
 
 
-
-
-
-
-
-
-
-
-
+function xhr (method, url, obj) {
+    var Request = new XMLHttpRequest();
+    Request.open(method, url);
+    Request.setRequestHeader('CONTENT-TYPE', 'application/x-www-from-urlencode');
+    Request.send();
+    Request.onreadystatechange = () => {
+        if (Request.readyState === 4 && Request.status === 200) {
+            var div = document.getElementsByTagName('div')[0];
+            div.innerHTML = Request.responseText;
+        } else {
+            var div = document.getElementsByTagName('div')[1];
+            div.innerHTML = Request.status;
+        }
+    }
+}
