@@ -414,13 +414,6 @@ function test (resolve, reject) {
 }
 
 
-
-
-
-
-
-
-
 var SomeoneGirl = "文婷";
 if (SomeoneGirl == "猪") {
     console.log("文婷是猪");
@@ -435,6 +428,7 @@ var Obj = {}; // 对象
 var str = ""; // 字符串
 var unfined; // 未定义
 var n = null; // 空
+
 
 console.log(typeof num);
 console.log(typeof boolean);
