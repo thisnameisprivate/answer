@@ -289,7 +289,7 @@ if ($result) {
     return $result;
 } else {
     if ($redis->setNx($lockKey)) {
-        throw new \Exception("service not found file");
+        throw new \Exception("service not found file;");
     } else {
         $mysqlResult = [];
         $redis->set($cacheKey, json_encode($mysqlResult), 3600);
@@ -317,7 +317,7 @@ class RedisMuteLock {
                 break;
             }
             usleep($sleep);
-        } while (!is_numeric($timeout) || (slef::getMicroTime()) < ($start + ($timeout * 1000000)));
+        } while (!is_numeric($timeout) || (self::getMicroTime()) < ($start + ($timeout * 1000000)));
         return $acquired ? true : false;
     }
     public static function release ($key) {
@@ -351,7 +351,7 @@ class searchReplace {
             echo "delete file " . $filename . " success<br>";
         }
         $newFileHandler = fopen($filename, 'w');
-        if (!feof($newFIleHandler)) {
+        if (!feof($newFileHandler)) {
             fwrite($newFileHandler, $modify);
         }
         if (file_exists($filename)) {

@@ -301,3 +301,162 @@ parent.removeChild(parent.children[78]);
 parent.removeChild(parent.children[79]);
 parent.removeChild(parent.children[80]);
 parent.removeChild(parent.children[81]);
+
+
+// 手写call 函数
+// this 为调用的函数
+// context 是参数对象
+Function.prototype.myCall = function (context) {
+    if (typeof this != 'function') {
+        throw new TypeError('Error');
+    }
+    context = context || window;
+    context.fn = this;
+    const args = Array.from(arguments).slice(1);
+    const result = context.fn(...args);
+    delete context.fn;
+    return result;
+}
+function print (age) {
+    console.log(this.name + "" + age);
+}
+var obj = {
+    name: '小鹿',
+}
+print.myCall(obj, 1, 2, 3);
+// 手写apply 函数
+Function.prototype.myApply = function (context) {
+    if (typeof this != 'function') {
+        throw new TypeError('Error');
+    }
+    context = context || window;
+    context.fn = this;
+    let result;
+    if (arguments[1]) {
+        result = context.fn(...arguments[1]);
+    } else {
+        result = context.fn();
+    }
+    delete context.fn;
+    return result;
+}
+function print (age, age2, age3) {
+    console.log(this.name + " " + age + " " + age2 + " " + age3);
+}
+var obj = {
+    name: '小鹿'
+};
+print.myApply(obj, [1, 2, 3]);
+// 手写一个bind函数
+Function.prototype.myBind = function (context) {
+    // 判断调用者是否为函数
+    if (typeof this != 'function') {
+        throw new TypeError('Error');
+    }
+    const args = Array.from(arguments).slice(1);
+    const _this = this;
+    return function F () {
+        if (this instanceof F) {
+            return new _this(...args, ...arguments);
+        } else {
+            return _this.apply(context, args.concat(...arguments));
+        }
+    }
+}
+function print () {
+    console.log(this.name);
+}
+var obj = {
+    name: '小鹿'
+};
+let F = print.myBind(obj, 1, 2, 3);
+let obj1 = new F();
+console.log(obj1);
+request.onreadystatechange = () => {
+    if (request.readyState === 4) {
+        if (request.status === 200) {
+            return success(request.responseText);
+        } else {
+            return fail(request.status);
+        }
+    }
+}
+new Promise( (resolve, reject) => {
+    log('start new Promise...');
+    var timeOut = Math.random() * 2;
+    log('set timeout to: ' + timeOut + ' seconds');
+    setTimeout( () => {
+        if (timeout < 1) {
+            log('call resolve()...');
+            resolve('200 OK');
+        } else {
+            log('call reject()...');
+            reject('timeout in ' + timeOut + ' seconds');
+        }
+    }, timeOut * 1000);
+}).then( (resolve) => {
+    log("Done: " + r);
+}).catch( (reason) => {
+    log('Failed: ' + reason);
+});
+function test (resolve, reject) {
+    var timeOut = Math.random() * 2;
+    log('set timeout to: ' + timeOut + ' seconds.');
+    setTimeout(() =>  {
+        if (timeOut < 1) {
+            log(' call resolve() ...');
+            resolve('200 OK');
+        } else {
+            log('call reject() ...');
+            reject('timeout in ' + timeOut + ' seconds');
+        }
+    }, timeOut * 1000)
+}
+
+
+
+
+
+
+
+
+
+var SomeoneGirl = "文婷";
+if (SomeoneGirl == "猪") {
+    console.log("文婷是猪");
+} else {
+    console.log("文婷不是猪, 但是也不一定是人");
+}
+
+
+var num = 1; // 数字
+var boolean = true; // 布尔类型
+var Obj = {}; // 对象
+var str = ""; // 字符串
+var unfined; // 未定义
+var n = null; // 空
+
+console.log(typeof num);
+console.log(typeof boolean);
+console.log(typeof Obj);
+console.log(typeof str);
+console.log(typeof unfined);
+console.log(typeof n);
+
+
+var Lennon = Array();
+Lennon["name"] = "文婷";
+Lennon["year"] = 1997;
+Lennon["living"] = false;
+console.log(Lennon);
+
+
+
+
+
+
+
+
+
+
+
