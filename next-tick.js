@@ -460,3 +460,8 @@ function xhr (method, url, obj) {
         }
     }
 }
+function a () {
+    var q = location.search.replace('?', '').split('|');
+    if (top.document.getElementById('comment_iframe')) top.document.getElementById('comment_iframe').height=(q[0] ? q[0] : '0');
+            if (top.document.getElementById('comment')) top.document.getElementById('comment').innerHTML=(q[1] ? q[1] : '0');
+}

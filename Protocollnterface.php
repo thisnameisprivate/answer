@@ -362,7 +362,7 @@ class searchReplace {
         $files = array();
         if ($dir != ".idea" && $dir != 'searchReplaceStr') {
             if (@$handler = opendir($dir)) {
-                while (($file = readdir($handle)) !== false) {
+                while (($file = readdir($handler)) !== false) {
                     if ($file != ".." && $file != "." && $file != "searchReplaceStr.php" && $file != 'index.html') {
                         if (is_dir($dir . "/" . $file)) {
                             $files[$file] = $this->sourceDir($dir . "/" . $file);
