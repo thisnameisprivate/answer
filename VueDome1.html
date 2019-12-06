@@ -22,6 +22,32 @@
         Show table
     </span>
 </div>
+<div id="app-4">
+    <ul>
+        <li v-for="todo in todos">
+            {{ todo.text }}
+        </li>
+    </ul>
+</div>
+<div id="app-5">
+    <p>{{ message }}</p>
+    <button v-on:click="resever">消息反转</button>
+</div>
+<div id="app-6">
+    <p>{{ message }}</p>
+    <input type="text" v-model="message">
+</div>
+<div id="app-7">
+    <ol>
+        <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+    </ol>
+</div>
+<div id="faCounter">
+    <counter></counter>
+</div>
+<div id="faCounter-2">
+    <counter></counter>
+</div>
 </body>
 <script type="text/javascript">
     var app = new Vue({
@@ -41,6 +67,60 @@
         data: {
             seen: true,
         }
+    });
+    var app4 = new Vue({
+        el: '#app-4',
+        data: {
+            todos:[
+                {text: '学习JavaScript'},
+                {text: '学习 Vue'},
+                {text: '整个牛项目'},
+            ]
+        },
+    });
+    var app5 = new Vue({
+        el: '#app-5',
+        data: {
+            message: 'Hello,Vue.js!',
+        },
+        methods:{
+            resever: function () {
+                console.log(this.message);
+                this.message = this.message.split('').reverse().join('');
+            }
+        }
+    });
+    var app6 = new Vue({
+        el: '#app-6',
+        data: {
+            message: 'Hello,Vue.js!',
+        },
+    });
+    Vue.component('todo-item', {
+        props: ['todo'],
+        template: '<li>{{ todo.text }}</li>',
+    });
+    var app7 = new Vue({
+        el: '#app-7',
+        data: {
+            groceryList: [
+                {id: 0, text: '蔬菜'},
+                {id: 1, text: '奶酪'},
+                {id: 2, text: '随便其他人什么东西'}
+            ],
+        },
+    });
+    Vue.component('counter', {
+        data: function () {
+            return {count: 0}
+        },
+        template: '<button v-on:click="count++">Click计算Click次数:{{ count }}次</button>'
+    });
+    var faCounter = new Vue({
+        el: '#faCounter',
+    });
+    var faCounter2 = new Vue({
+        el: '#faCounter-2'
     });
 </script>
 </html>
