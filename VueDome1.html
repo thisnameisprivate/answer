@@ -43,9 +43,17 @@
     </ol>
 </div>
 <div id="faCounter">
+    <!-- component 可用无限次使用, 每次运算的逻辑互不影响, 可用理解为类的实例, 每次都单独开辟了一块内存在单独使用 -->
+    <counter></counter>
+    <counter></counter>
+    <counter></counter>
     <counter></counter>
 </div>
 <div id="faCounter-2">
+    <!-- component 可用无限次使用, 每次运算的逻辑互不影响, 可用理解为类的实例, 每次都单独开辟了一块内存在单独使用 -->
+    <counter></counter>
+    <counter></counter>
+    <counter></counter>
     <counter></counter>
 </div>
 </body>
@@ -124,5 +132,26 @@
     });
     console.log(new Date());
     console.log(new Date().toLocaleString());
+
+    // 定义一个新组件
+    // 格式：
+    // 1： 组件为"counter"
+    // 2:  data数据属性: 写函数
+    // 3: template 模板: 写组件内容(元素和触发的事件)
+
+
+    // 可重复使用的组件:
+    Vue.component("counter", {
+        data: function () {
+            return {count: 0}
+        },
+        template: '<button v-on:clilck="count++">点击计算点击次数 : {{ count }}</button>',
+    })
+    // 将页面元素和组件绑定在一起, 一个组件使用的次数是无限的
+    var fatherCounter = new Vue({
+        el: '#fatherCounter',
+    });
+    // 页面Html代码
+
 </script>
 </html>
