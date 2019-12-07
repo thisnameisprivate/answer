@@ -9,7 +9,7 @@
     <title>VueDome3</title>
 </head>
 <body>
-    <div id="app">
+    <div id="example">
         <p>{{ foo }}</p>
         <button v-on:click="foo = 'baz'">Change It</button>
     </div>
@@ -23,7 +23,7 @@
     console.log(vm.$data === data);
     console.log(vm.$el === document.getElementById('example'));
     vm.$watch('a', function (newValue, oldValue) {
-
+        
     });
 </script>
 </html>
