@@ -152,6 +152,14 @@
     //     el: '#fatherCounter',
     // });
     // 页面Html代码
+    var data = { a:1 };
+    var vm = new Vue({
+        data: data,
+    });
+    console.log(data.a == vm.a);
+    data.a = 2;
+    console.log(vm.a);
+    console.log(data.a);
 
 </script>
 </html>
