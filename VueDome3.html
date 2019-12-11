@@ -21,7 +21,7 @@
         data:data,
     })
     console.log(vm.$data === data);
-    console.log(vm.$el === document.getElementById('example'));
+    console.log(vm.$el === document.getElementsByTagName('example'));
     vm.$watch('a', function (newValue, oldValue) {
         
     });
