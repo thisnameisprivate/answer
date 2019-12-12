@@ -384,3 +384,59 @@ alert ('please input value'),
 location.href = './index.html';
 </script>";
 }
+function callback () {
+    echo "execute no parameters callback. <br/>";
+}
+function main ($callback) {
+    echo "execute main start.<br/>";
+    $callback();
+    echo "execute main end.<br/>";
+}
+main('callback');
+// 全局回调函数
+function callback2 ($a, $b) {
+    echo "$a<====>$b.<br/>";
+}
+$func = "callback";
+call_user_func($func, 1, 2);
+call_user_func_array($func, [1, 2]);
+// 类方法及静态方法回调
+class Test {
+    function callback ($a, $b) {
+        echo "callback $a<====>$b<br/>";
+    }
+    public static function staticCallback ($a, $b) {
+        echo "staticCallback $a<====>$b.<br/>";
+    }
+}
+$test = new Test();
+call_user_func([$test, 'callback'], 1, 2);
+call_user_func_array([$test, 'callback'], [1, 2]);
+$func = 'callback';
+$test->func(7, 9);
+call_user_func(['Test', 'staticCallback'], 4, 6);
+call_user_func_array(['Test', 'staticCallback'], [4, 6]);
+call_user_func_array("Test::staticCallback", [4, 6]);
+
+// 匿名函数
+$closureFunc = function ($str) {
+    echo $str;
+};
+$closureFunc("Hello, World.");
+$closureFunc = function ($name) {
+    $sex = "man";
+    $func = function ($age) use ($name, $sex) {
+        echo "$name--$sex--$age<br/>";
+    };
+    $func(23);
+};
+$func = $closureFunc('lvfk');
+// 闭包实现
+function printStr () {
+    $closure = function ($str) {
+        echo $str;
+    };
+    $closure("printStr");
+}
+printStr();
+// 闭包实现2
