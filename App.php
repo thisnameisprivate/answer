@@ -20,9 +20,12 @@ class App {
         echo $this->responseBody;
     }
 }
-$app =new App();
+$app = new App();
 $app->addRoute('/user', function () {
     $this->responseContentType = 'application/json;charset=utf8';
     $this->responseBody = 'Hello, World.';
 });
 $app->disptach('/user');
+$app->addRoute('/user', function () {
+
+});
